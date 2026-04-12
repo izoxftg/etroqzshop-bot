@@ -38,7 +38,7 @@ async def send_message(
         description=message,
         color=EMBED_COLOR
     )
-    embed.set_footer(text="Etroqz Shop • discord.gg/XuCSfNMC")
+    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
 
     await target.send(embed=embed)
     await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
@@ -107,7 +107,7 @@ async def send_offres(interaction: discord.Interaction, salon: discord.TextChann
         "🔗 https://etroqz-optimizer.netlify.app/"
     ), inline=False)
 
-    embed.set_footer(text="Etroqz Shop • discord.gg/XuCSfNMC")
+    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
 
     await target.send(embed=embed)
     await target.send("<#1480018356261355611>")
@@ -154,7 +154,7 @@ async def send_spoof(interaction: discord.Interaction, salon: discord.TextChanne
         "🔗 https://etroqz-optimizer.netlify.app/"
     ), inline=False)
 
-    embed.set_footer(text="Etroqz Shop • discord.gg/XuCSfNMC")
+    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
 
     await target.send(embed=embed)
     await target.send("<#1480018356261355611>")
@@ -176,7 +176,7 @@ async def send_open(interaction: discord.Interaction, salon: discord.TextChannel
         description="Les commandes sont **ouvertes** !\nOuvre un ticket pour commander ton optimisation.",
         color=0x57F287
     )
-    embed.set_footer(text="Etroqz Shop • discord.gg/XuCSfNMC")
+    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
 
     await target.send(embed=embed)
     await target.send("@everyone")
@@ -198,7 +198,7 @@ async def send_close(interaction: discord.Interaction, salon: discord.TextChanne
         description="Les commandes sont **fermées** pour le moment.\nRevenez plus tard !",
         color=0xED4245
     )
-    embed.set_footer(text="Etroqz Shop • discord.gg/XuCSfNMC")
+    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
 
     await target.send(embed=embed)
     await target.send("@everyone")
