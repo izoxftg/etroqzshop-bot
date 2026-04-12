@@ -126,7 +126,6 @@ async def send_spoof(interaction: discord.Interaction, salon: discord.TextChanne
 
     embed = discord.Embed(
         title="🖥️ ETROQZ SHOP — SPOOF",
-        description="Spoof intégral de ton PC, fait à la main par un expert.\n**Compatible RAID · Résultat propre · Vérifié avec toi en direct.**",
         color=0x7c3aed
     )
 
@@ -151,7 +150,8 @@ async def send_spoof(interaction: discord.Interaction, salon: discord.TextChanne
     ), inline=False)
 
     embed.add_field(name="🛡️ Garantie remboursement", value=(
-        "En cas de problème ou si le spoof n'a pas fonctionné, **tu es remboursé intégralement**. Aucun risque."
+        "En cas de problème ou si le spoof n'a pas fonctionné, **tu es remboursé intégralement**. Aucun risque.\n\n"
+        "🔗 https://etroqz-optimizer.netlify.app/"
     ), inline=False)
 
     embed.set_footer(text="Etroqz Shop • discord.gg/XuCSfNMC")
