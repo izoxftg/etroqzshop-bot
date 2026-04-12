@@ -227,6 +227,60 @@ async def send_close(interaction: discord.Interaction, salon: discord.TextChanne
     await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
 
 
+# ── Slash command /fortnite ──────────────────────────────────
+@bot.tree.command(name="fortnite", description="Envoie le message des offres Comptes Fortnite")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def send_fortnite(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    embed = discord.Embed(
+        title="🎮 ETROQZ SHOP — COMPTES FORTNITE",
+        color=0x7c3aed
+    )
+
+    embed.add_field(name="⬛ Compte Standard — Prix variable", value=(
+        "➜ Compte vérifié et testé avant livraison\n"
+        "➜ Skins & cosmétiques inclus selon disponibilité\n"
+        "➜ Historique de jeu propre\n"
+        "➜ Livraison instantanée après paiement\n"
+        "💡 *Le prix varie selon le nombre et la rareté des skins*"
+    ), inline=False)
+
+    embed.add_field(name="✦ Compte Premium — Prix variable", value=(
+        "➜ Tout ce qui est inclus dans le Standard\n"
+        "➜ Skins rares / exclusifs (OG, Battle Pass anciens...)\n"
+        "➜ Support inclus en cas de problème\n\n"
+        "💡 *Le prix varie selon la rareté des skins et le niveau de sécurité du compte*"
+    ), inline=False)
+
+    embed.add_field(name="⚠️ Tarification — Comment ça fonctionne ?", value=(
+        "Les prix ne sont **pas fixes** : ils dépendent de :\n"
+        "・ La **rareté des skins** présents sur le compte\n"
+        "・ Le **niveau de sécurité** du compte (2FA, e-mail lié...)\n"
+        "・ Le **contenu global** : V-Bucks, Battle Pass, emotes...\n\n"
+        "➜ Ouvre un ticket pour recevoir une **fiche détaillée** du compte qui t'intéresse avec son prix exact."
+    ), inline=False)
+
+    embed.add_field(name="📋 Comment commander ?", value=(
+        "① Ouvre un ticket sur ce Discord\n"
+        "② Indique le type de compte recherché\n"
+        "③ On te propose les comptes disponibles avec leur prix\n"
+        "④ Paie via PayPal ou carte bancaire\n"
+        "⑤ Compte livré instantanément ✓\n\n"
+        "🔗 https://etroqz-optimizer.netlify.app/"
+    ), inline=False)
+
+    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
+
+    await target.send(embed=embed)
+    await target.send("<#1480018356261355611>")
+    await interaction.response.send_message(f"✅ Offres Fortnite envoyées dans {target.mention} !", ephemeral=True)
+
+
 # ── Démarrage ────────────────────────────────────────────────
 @bot.event
 async def on_ready():
