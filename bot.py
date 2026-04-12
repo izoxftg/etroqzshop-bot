@@ -173,8 +173,30 @@ async def send_open(interaction: discord.Interaction, salon: discord.TextChannel
 
     embed = discord.Embed(
         title="🟢 SERVICES OUVERTS",
-        description="Les commandes sont **ouvertes** !\nOuvre un ticket pour commander ton optimisation.",
+        description="Les commandes sont **ouvertes** !\nOuvre un ticket pour passer ta commande !",
         color=0x57F287
+    )
+    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
+
+    await target.send(embed=embed)
+    await target.send("@everyone")
+    await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
+
+
+# ── Slash command /update ────────────────────────────────────
+@bot.tree.command(name="update", description="Annonce une mise à jour des services")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def send_update(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    embed = discord.Embed(
+        title="🟠 MISE À JOUR EN COURS",
+        description="Les services sont actuellement en cours de mise à jour.\nMerci de patienter, nous revenons très vite !",
+        color=0xE67E22
     )
     embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
 
