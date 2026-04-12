@@ -25,7 +25,7 @@ async def send_message(
     interaction: discord.Interaction,
     message: str,
     salon: discord.TextChannel = None,
-    titre: str = "📢 Etroqz Optimizer"
+    titre: str = "Etroqz Shop"
 ):
     if not interaction.user.guild_permissions.administrator:
         await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
