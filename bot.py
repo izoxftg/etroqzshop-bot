@@ -165,7 +165,7 @@ async def on_ready():
     print(f"✅ Bot connecté en tant que {bot.user} !")
     await bot.change_presence(activity=discord.Activity(
         type=discord.ActivityType.watching,
-        name="Etroqz Optimizer"
+        name="Etroqz Shop"
     ))
 
 
