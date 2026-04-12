@@ -38,7 +38,7 @@ async def send_message(
         description=message,
         color=EMBED_COLOR
     )
-    embed.set_footer(text="Etroqz Optimizer • discord.gg/XuCSfNMC")
+    embed.set_footer(text="Etroqz Shop • discord.gg/XuCSfNMC")
 
     await target.send(embed=embed)
     await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
@@ -107,11 +107,58 @@ async def send_offres(interaction: discord.Interaction, salon: discord.TextChann
         "🔗 https://etroqz-optimizer.netlify.app/"
     ), inline=False)
 
-    embed.set_footer(text="Etroqz Optimizer • discord.gg/XuCSfNMC")
+    embed.set_footer(text="Etroqz Shop • discord.gg/XuCSfNMC")
 
     await target.send(embed=embed)
     await target.send("<#1480018356261355611>")
     await interaction.response.send_message(f"✅ Offres envoyées dans {target.mention} !", ephemeral=True)
+
+
+# ── Slash command /spoof ─────────────────────────────────────
+@bot.tree.command(name="spoof", description="Envoie le message des offres Spoof Etroqz")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def send_spoof(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    embed = discord.Embed(
+        title="🖥️ ETROQZ SHOP — SPOOF",
+        description="Spoof intégral de ton PC, fait à la main par un expert.\n**Compatible RAID · Résultat propre · Vérifié avec toi en direct.**",
+        color=0x7c3aed
+    )
+
+    embed.add_field(name="⬛ Spoof Intégral — 15€ prix unique", value=(
+        "➜ Flash du BIOS\n"
+        "➜ Réinstallation complète de Windows\n"
+        "➜ RAID du SSD (effectué en simultané avec la réinstallation)\n"
+        "➜ Spoof intégral du système\n"
+        "➜ Vérification du résultat final avec toi"
+    ), inline=False)
+
+    embed.add_field(name="📋 Comment ça marche ?", value=(
+        "① Ouvre un ticket sur ce Discord\n"
+        "② Paie les 15€ (PayPal ou carte bancaire)\n"
+        "③ Prise en main via AnyDesk / TeamViewer\n"
+        "④ Spoof effectué en direct sous tes yeux ✓"
+    ), inline=False)
+
+    embed.add_field(name="🔧 Compatibilité RAID", value=(
+        "➜ **Ryzen (AMD)** — RAID supporté nativement\n"
+        "➜ **Intel** — RAID dispo avec 2 SSD minimum"
+    ), inline=False)
+
+    embed.add_field(name="🛡️ Garantie remboursement", value=(
+        "En cas de problème ou si le spoof n'a pas fonctionné, **tu es remboursé intégralement**. Aucun risque."
+    ), inline=False)
+
+    embed.set_footer(text="Etroqz Shop • discord.gg/XuCSfNMC")
+
+    await target.send(embed=embed)
+    await target.send("<#1480018356261355611>")
+    await interaction.response.send_message(f"✅ Offre Spoof envoyée dans {target.mention} !", ephemeral=True)
 
 
 # ── Slash command /open ──────────────────────────────────────
@@ -129,7 +176,7 @@ async def send_open(interaction: discord.Interaction, salon: discord.TextChannel
         description="Les commandes sont **ouvertes** !\nOuvre un ticket pour commander ton optimisation.",
         color=0x57F287
     )
-    embed.set_footer(text="Etroqz Optimizer • discord.gg/XuCSfNMC")
+    embed.set_footer(text="Etroqz Shop • discord.gg/XuCSfNMC")
 
     await target.send(embed=embed)
     await target.send("@everyone")
@@ -151,7 +198,7 @@ async def send_close(interaction: discord.Interaction, salon: discord.TextChanne
         description="Les commandes sont **fermées** pour le moment.\nRevenez plus tard !",
         color=0xED4245
     )
-    embed.set_footer(text="Etroqz Optimizer • discord.gg/XuCSfNMC")
+    embed.set_footer(text="Etroqz Shop • discord.gg/XuCSfNMC")
 
     await target.send(embed=embed)
     await target.send("@everyone")
