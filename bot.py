@@ -8,8 +8,60 @@ TOKEN = os.environ.get("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
 intents.message_content = True
+intents.members = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
+
+# ── Filtre de mots blacklistés ───────────────────────────────
+BLACKLISTED_WORDS = [
+    "cheat", "spoof", "spoofer", "hack", "hacker", "aimbot",
+    "triggerbot", "wallhack", "esp", "cheatbreaker", "inject",
+    "bypass", "crack", "keygen", "exploit"
+]
+
+
+def normalize(text: str) -> str:
+    return (
+        text.lower()
+        .replace("4", "a").replace("@", "a")
+        .replace("3", "e")
+        .replace("1", "i").replace("!", "i")
+        .replace("0", "o")
+        .replace("5", "s").replace("$", "s")
+        .replace("7", "t")
+        .replace("+", "t")
+        .replace("ph", "f")
+    )
+
+
+@bot.event
+async def on_message(message: discord.Message):
+    if message.author.bot:
+        return
+    if message.guild and message.author.guild_permissions.administrator:
+        await bot.process_commands(message)
+        return
+
+    normalized = normalize(message.content)
+    found = next((w for w in BLACKLISTED_WORDS if w in normalized), None)
+
+    if found:
+        try:
+            await message.delete()
+        except discord.Forbidden:
+            pass
+
+        await message.channel.send(
+            f"Oops {message.author.mention}! One or more words you've typed out are blacklisted from the server. Edit the word/s to \"bypass\" this filter.\n\n"
+            "**Examples:**\n"
+            "• cheat = chair\n"
+            "• spoof = woof\n"
+            "• spoofer = woofer\n"
+            "• hack = h4ck",
+            delete_after=10
+        )
+
+    await bot.process_commands(message)
 
 EMBED_COLOR = 0x2ecc71  # vert
 
