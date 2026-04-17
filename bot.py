@@ -247,10 +247,9 @@ async def fortnite_updating(interaction: discord.Interaction, salon: discord.Tex
 
     target = salon or interaction.channel
 
-    embed = discord.Embed(title="📦 Product Status Update", color=0x3498db)
+    embed = discord.Embed(title="📗 Etroqz Cheat", color=0x3498db)
     embed.add_field(name="Fortnite", value="🟢 **Undetected** → 🔵 **Updating**", inline=False)
     embed.add_field(name="📋 Details", value='Fortnite status changed from "Undetected" to "Updating"', inline=False)
-    embed.add_field(name="🏷️ Tags", value="#Status Change #Update", inline=False)
     embed.set_footer(text=f"Etroqz Status Update • Aujourd'hui à {discord.utils.utcnow().strftime('%H:%M')}")
 
     await target.send(embed=embed)
@@ -267,10 +266,9 @@ async def fortnite_undetected(interaction: discord.Interaction, salon: discord.T
 
     target = salon or interaction.channel
 
-    embed = discord.Embed(title="📦 Product Status Update", color=0x2ecc71)
+    embed = discord.Embed(title="📗 Etroqz Cheat", color=0x2ecc71)
     embed.add_field(name="Fortnite", value="🔵 **Updating** → 🟢 **Undetected**", inline=False)
     embed.add_field(name="📋 Details", value='Fortnite status changed from "Updating" to "Undetected"', inline=False)
-    embed.add_field(name="🏷️ Tags", value="#Status Change #Update", inline=False)
     embed.set_footer(text=f"Etroqz Status Update • Aujourd'hui à {discord.utils.utcnow().strftime('%H:%M')}")
 
     await target.send(embed=embed)
