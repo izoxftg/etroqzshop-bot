@@ -63,7 +63,7 @@ async def on_message(message: discord.Message):
                 ),
                 color=0x9B59B6
             )
-            await message.channel.send(embed=embed, delete_after=10)
+            await message.channel.send(embed=embed, delete_after=6)
         except Exception:
             pass
 
@@ -172,7 +172,7 @@ async def send_offres(interaction: discord.Interaction, salon: discord.TextChann
 
 
 # ── Slash command /spoof ─────────────────────────────────────
-@bot.tree.command(name="spoof", description="Envoie le message des offres Spoof Etroqz")
+@bot.tree.command(name="woof", description="Envoie le message des offres Spoof Etroqz")
 @app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
 async def send_spoof(interaction: discord.Interaction, salon: discord.TextChannel = None):
     if not interaction.user.guild_permissions.administrator:
@@ -333,7 +333,7 @@ async def fortnite_undetected(interaction: discord.Interaction, salon: discord.T
 
 
 # ── Slash command /cheat ─────────────────────────────────────
-@bot.tree.command(name="cheat", description="Affiche les features et le pricing du cheat")
+@bot.tree.command(name="chair", description="Affiche les features et le pricing du cheat")
 @app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
 async def send_cheat(interaction: discord.Interaction, salon: discord.TextChannel = None):
     if not interaction.user.guild_permissions.administrator:
