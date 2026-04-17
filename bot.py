@@ -11,7 +11,7 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-EMBED_COLOR = 0x7c3aed  # violet
+EMBED_COLOR = 0x2ecc71  # vert
 
 
 # ── Slash command /send ──────────────────────────────────────
@@ -55,8 +55,8 @@ async def send_offres(interaction: discord.Interaction, salon: discord.TextChann
     target = salon or interaction.channel
 
     embed = discord.Embed(
-        title="💜 ETROQZ OPTIMIZER — NOS OFFRES",
-        color=0x7c3aed
+        title="💜 ETROQZ CHEAT — NOS OFFRES",
+        color=0x2ecc71
     )
 
     embed.add_field(name="⬛ Standard — 15€", value=(
@@ -126,7 +126,7 @@ async def send_spoof(interaction: discord.Interaction, salon: discord.TextChanne
 
     embed = discord.Embed(
         title="🖥️ ETROQZ SHOP — SPOOF",
-        color=0x7c3aed
+        color=0x2ecc71
     )
 
     embed.add_field(name="⬛ Spoof Intégral — 15€ • One Time", value=(
@@ -237,58 +237,44 @@ async def send_close(interaction: discord.Interaction, salon: discord.TextChanne
     await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
 
 
-# ── Slash command /cheat ─────────────────────────────────────
-@bot.tree.command(name="cheat", description="Envoie le message des offres Etroqz Cheat")
+# ── Slash command /fortnite_updating ────────────────────────
+@bot.tree.command(name="fortnite_updating", description="Passe Fortnite en Updating")
 @app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
-async def send_cheat(interaction: discord.Interaction, salon: discord.TextChannel = None):
+async def fortnite_updating(interaction: discord.Interaction, salon: discord.TextChannel = None):
     if not interaction.user.guild_permissions.administrator:
         await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
         return
 
     target = salon or interaction.channel
 
-    embed = discord.Embed(
-        title="🎮 ETROQZ CHEAT",
-        color=0x7c3aed
-    )
-
-    embed.add_field(name="🎯 Aimbot", value=(
-        "🟣 Memory Aimbot\n"
-        "🟣 Smooth Natural Draw\n"
-        "🟣 Crosshair Fov"
-    ), inline=False)
-
-    embed.add_field(name="👁️ Visuals", value=(
-        "🟣 Box ESP\n"
-        "🟣 Skeleton ESP\n"
-        "🟣 Snaplines\n"
-        "🟣 Player Name ESP\n"
-        "🟣 Player Distance ESP\n"
-        "🟣 Player Kill ESP\n"
-        "🟣 Player Rank ESP\n"
-        "🟣 Player Count ESP"
-    ), inline=False)
-
-    embed.add_field(name="⚡ Exploit", value=(
-        "🟣 Silent Aim\n"
-        "🟣 Triggerbot\n"
-        "🟣 Speedhack\n"
-        "🟣 Save / Load Config"
-    ), inline=False)
-
-    embed.add_field(name="💎 Pricing", value=(
-        "📩 Etroqz Cheat | 1 Day: $4.99\n"
-        "📩 Etroqz Cheat | 1 Week: $14.99\n"
-        "📩 Etroqz Cheat | 1 Month: $39.99\n"
-        "📩 Etroqz Cheat | Lifetime: $99.99"
-    ), inline=False)
-
-    embed.add_field(name="🛒 Purchase", value="<#1480018356261355611>", inline=False)
-
-    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
+    embed = discord.Embed(title="📦 Product Status Update", color=0x3498db)
+    embed.add_field(name="Fortnite", value="🟢 **Undetected** → 🔵 **Updating**", inline=False)
+    embed.add_field(name="📋 Details", value='Fortnite status changed from "Undetected" to "Updating"', inline=False)
+    embed.add_field(name="🏷️ Tags", value="#Status Change #Update", inline=False)
+    embed.set_footer(text=f"Etroqz Status Update • Aujourd'hui à {discord.utils.utcnow().strftime('%H:%M')}")
 
     await target.send(embed=embed)
-    await interaction.response.send_message(f"✅ Offre Cheat envoyée dans {target.mention} !", ephemeral=True)
+    await interaction.response.send_message(f"✅ Fortnite → Updating envoyé dans {target.mention} !", ephemeral=True)
+
+
+# ── Slash command /fortnite_undetected ──────────────────────
+@bot.tree.command(name="fortnite_undetected", description="Passe Fortnite en Undetected")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def fortnite_undetected(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    embed = discord.Embed(title="📦 Product Status Update", color=0x2ecc71)
+    embed.add_field(name="Fortnite", value="🔵 **Updating** → 🟢 **Undetected**", inline=False)
+    embed.add_field(name="📋 Details", value='Fortnite status changed from "Updating" to "Undetected"', inline=False)
+    embed.add_field(name="🏷️ Tags", value="#Status Change #Update", inline=False)
+    embed.set_footer(text=f"Etroqz Status Update • Aujourd'hui à {discord.utils.utcnow().strftime('%H:%M')}")
+
+    await target.send(embed=embed)
+    await interaction.response.send_message(f"✅ Fortnite → Undetected envoyé dans {target.mention} !", ephemeral=True)
 
 
 # ── Démarrage ────────────────────────────────────────────────
