@@ -341,22 +341,26 @@ async def send_guide(interaction: discord.Interaction, salon: discord.TextChanne
 
     embed = discord.Embed(
         title="📖 GUIDE D'INSTALLATION — ETROQZ CHEAT",
-        color=EMBED_COLOR
+        color=0x9B59B6  # violet
     )
 
     embed.add_field(name="✅ Prérequis", value=(
-        "① Être sous **Windows 10/11** (privilégier Windows 10 si possible)\n"
+        "\n"
+        "① Être sous **Windows 10/11** (privilégier Windows 10)\n"
         "② Avoir **désactivé le Secure Boot** dans le BIOS"
     ), inline=False)
 
     embed.add_field(name="📦 Installation des dépendances", value=(
-        "① Installer **Visual C++ Redistributable** :\n"
-        "🔗 https://aka.ms/vc14/vc_redist.x64.exe\n\n"
-        "② Installer **DirectX** :\n"
-        "🔗 https://www.microsoft.com/fr-fr/download/details.aspx?id=35"
+        "\n"
+        "① **Visual C++ Redistributable** :\n"
+        "https://aka.ms/vc14/vc_redist.x64.exe\n"
+        "\n"
+        "② **DirectX** :\n"
+        "https://www.microsoft.com/fr-fr/download/details.aspx?id=35"
     ), inline=False)
 
     embed.add_field(name="⚙️ Étapes d'installation", value=(
+        "\n"
         "① Fermer **Epic Games Launcher** et **Fortnite**\n"
         "② Lancer le **loader en tant qu'administrateur**\n"
         "③ Entrer votre **clé (key)**\n"
@@ -366,15 +370,18 @@ async def send_guide(interaction: discord.Interaction, salon: discord.TextChanne
     ), inline=False)
 
     embed.add_field(name="🔧 Manipulation supplémentaire", value=(
+        "\n"
         "① Ne touchez **plus au loader**\n"
         "② Lancer **Fortnite**\n"
-        "③ Créer un fichier nommé **`temp`** dans le disque où Windows est installé"
+        "③ Créer un fichier **`temp`** à la racine du disque Windows"
     ), inline=False)
 
     embed.add_field(name="🚀 Lancement du cheat", value=(
+        "\n"
         "① Une fois dans le **lobby**, retourner sur le loader\n"
         "② Taper **2**, entrer votre clé si demandé\n"
-        "③ Appuyer sur **Entrée**, puis retaper **2**\n\n"
+        "③ Appuyer sur **Entrée**, puis retaper **2**\n"
+        "\n"
         "✅ **Le cheat devrait maintenant être actif !**"
     ), inline=False)
 
