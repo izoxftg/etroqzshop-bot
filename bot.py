@@ -277,6 +277,60 @@ async def fortnite_undetected(interaction: discord.Interaction, salon: discord.T
     await interaction.response.send_message(f"✅ Fortnite → Undetected envoyé dans {target.mention} !", ephemeral=True)
 
 
+# ── Slash command /cheat ─────────────────────────────────────
+@bot.tree.command(name="cheat", description="Affiche les features et le pricing du cheat")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def send_cheat(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    embed = discord.Embed(
+        title="✦ ETROQZ CHEAT",
+        color=EMBED_COLOR
+    )
+
+    embed.add_field(name="🎯 Aimbot", value=(
+        "🟢 Memory Aimbot\n"
+        "🟢 Smooth Natural Draw\n"
+        "🟢 Crosshair Fov"
+    ), inline=False)
+
+    embed.add_field(name="👁️ Visuals", value=(
+        "🟢 Box ESP\n"
+        "🟢 Skeleton ESP\n"
+        "🟢 Snaplines\n"
+        "🟢 Player Name ESP\n"
+        "🟢 Player Distance ESP\n"
+        "🟢 Player Kill ESP\n"
+        "🟢 Player Rank ESP\n"
+        "🟢 Player Count ESP"
+    ), inline=False)
+
+    embed.add_field(name="⚡ Exploit", value=(
+        "🟢 Silent Aim\n"
+        "🟢 Triggerbot\n"
+        "🟢 Speedhack\n"
+        "🟢 Save / Load Config"
+    ), inline=False)
+
+    embed.add_field(name="💎 Pricing", value=(
+        "✉️ Etroqz Cheat | 1 Day: **$4.99**\n"
+        "✉️ Etroqz Cheat | 1 Week: **$14.99**\n"
+        "✉️ Etroqz Cheat | 1 Month: **$39.99**\n"
+        "✉️ Etroqz Cheat | Lifetime: **$99.99**"
+    ), inline=False)
+
+    embed.add_field(name="🛒 Purchase", value="<#1480018356261355611>", inline=False)
+
+    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
+
+    await target.send(embed=embed)
+    await interaction.response.send_message(f"✅ Cheat envoyé dans {target.mention} !", ephemeral=True)
+
+
 # ── Démarrage ────────────────────────────────────────────────
 @bot.event
 async def on_ready():
