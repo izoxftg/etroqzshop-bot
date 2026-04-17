@@ -341,49 +341,40 @@ async def send_guide(interaction: discord.Interaction, salon: discord.TextChanne
 
     embed = discord.Embed(
         title="📖 GUIDE D'INSTALLATION — ETROQZ CHEAT",
-        color=0x9B59B6  # violet
+        color=0x9B59B6,
+        description=(
+            "**✅ Prérequis**\n"
+            "① Être sous **Windows 10/11** (privilégier Windows 10)\n"
+            "② Avoir **désactivé le Secure Boot** dans le BIOS\n"
+            "\n"
+            "**📦 Installation des dépendances**\n"
+            "① **Visual C++ Redistributable** :\n"
+            "https://aka.ms/vc14/vc_redist.x64.exe\n"
+            "\n"
+            "② **DirectX** :\n"
+            "https://www.microsoft.com/fr-fr/download/details.aspx?id=35\n"
+            "\n"
+            "**⚙️ Étapes d'installation**\n"
+            "① Fermer **Epic Games Launcher** et **Fortnite**\n"
+            "② Lancer le **loader en tant qu'administrateur**\n"
+            "③ Entrer votre **clé (key)**\n"
+            "④ Taper **1** pour charger le driver\n"
+            "⑤ Taper à nouveau **1** pour le mode standard\n"
+            "⑥ Appuyer sur **Entrée**\n"
+            "\n"
+            "**🔧 Manipulation supplémentaire**\n"
+            "① Ne touchez **plus au loader**\n"
+            "② Lancer **Fortnite**\n"
+            "③ Créer un fichier **`temp`** à la racine du disque Windows\n"
+            "\n"
+            "**🚀 Lancement du cheat**\n"
+            "① Une fois dans le **lobby**, retourner sur le loader\n"
+            "② Taper **2**, entrer votre clé si demandé\n"
+            "③ Appuyer sur **Entrée**, puis retaper **2**\n"
+            "\n"
+            "✅ **Le cheat devrait maintenant être actif !**"
+        )
     )
-
-    embed.add_field(name="✅ Prérequis", value=(
-        "\n"
-        "① Être sous **Windows 10/11** (privilégier Windows 10)\n"
-        "② Avoir **désactivé le Secure Boot** dans le BIOS"
-    ), inline=False)
-
-    embed.add_field(name="📦 Installation des dépendances", value=(
-        "\n"
-        "① **Visual C++ Redistributable** :\n"
-        "https://aka.ms/vc14/vc_redist.x64.exe\n"
-        "\n"
-        "② **DirectX** :\n"
-        "https://www.microsoft.com/fr-fr/download/details.aspx?id=35"
-    ), inline=False)
-
-    embed.add_field(name="⚙️ Étapes d'installation", value=(
-        "\n"
-        "① Fermer **Epic Games Launcher** et **Fortnite**\n"
-        "② Lancer le **loader en tant qu'administrateur**\n"
-        "③ Entrer votre **clé (key)**\n"
-        "④ Taper **1** pour charger le driver\n"
-        "⑤ Taper à nouveau **1** pour le mode standard\n"
-        "⑥ Appuyer sur **Entrée**"
-    ), inline=False)
-
-    embed.add_field(name="🔧 Manipulation supplémentaire", value=(
-        "\n"
-        "① Ne touchez **plus au loader**\n"
-        "② Lancer **Fortnite**\n"
-        "③ Créer un fichier **`temp`** à la racine du disque Windows"
-    ), inline=False)
-
-    embed.add_field(name="🚀 Lancement du cheat", value=(
-        "\n"
-        "① Une fois dans le **lobby**, retourner sur le loader\n"
-        "② Taper **2**, entrer votre clé si demandé\n"
-        "③ Appuyer sur **Entrée**, puis retaper **2**\n"
-        "\n"
-        "✅ **Le cheat devrait maintenant être actif !**"
-    ), inline=False)
 
     embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
 
