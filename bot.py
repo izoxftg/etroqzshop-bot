@@ -329,6 +329,61 @@ async def send_cheat(interaction: discord.Interaction, salon: discord.TextChanne
     await interaction.response.send_message(f"✅ Cheat envoyé dans {target.mention} !", ephemeral=True)
 
 
+# ── Slash command /guide ─────────────────────────────────────
+@bot.tree.command(name="guide", description="Affiche le guide d'installation du cheat")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def send_guide(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    embed = discord.Embed(
+        title="📖 GUIDE D'INSTALLATION — ETROQZ CHEAT",
+        color=EMBED_COLOR
+    )
+
+    embed.add_field(name="✅ Prérequis", value=(
+        "① Être sous **Windows 10/11** (privilégier Windows 10 si possible)\n"
+        "② Avoir **désactivé le Secure Boot** dans le BIOS"
+    ), inline=False)
+
+    embed.add_field(name="📦 Installation des dépendances", value=(
+        "① Installer **Visual C++ Redistributable** :\n"
+        "🔗 https://aka.ms/vc14/vc_redist.x64.exe\n\n"
+        "② Installer **DirectX** :\n"
+        "🔗 https://www.microsoft.com/fr-fr/download/details.aspx?id=35"
+    ), inline=False)
+
+    embed.add_field(name="⚙️ Étapes d'installation", value=(
+        "① Fermer **Epic Games Launcher** et **Fortnite**\n"
+        "② Lancer le **loader en tant qu'administrateur**\n"
+        "③ Entrer votre **clé (key)**\n"
+        "④ Taper **1** pour charger le driver\n"
+        "⑤ Taper à nouveau **1** pour le mode standard\n"
+        "⑥ Appuyer sur **Entrée**"
+    ), inline=False)
+
+    embed.add_field(name="🔧 Manipulation supplémentaire", value=(
+        "① Ne touchez **plus au loader**\n"
+        "② Lancer **Fortnite**\n"
+        "③ Créer un fichier nommé **`temp`** dans le disque où Windows est installé"
+    ), inline=False)
+
+    embed.add_field(name="🚀 Lancement du cheat", value=(
+        "① Une fois dans le **lobby**, retourner sur le loader\n"
+        "② Taper **2**, entrer votre clé si demandé\n"
+        "③ Appuyer sur **Entrée**, puis retaper **2**\n\n"
+        "✅ **Le cheat devrait maintenant être actif !**"
+    ), inline=False)
+
+    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
+
+    await target.send(embed=embed)
+    await interaction.response.send_message(f"✅ Guide envoyé dans {target.mention} !", ephemeral=True)
+
+
 # ── Démarrage ────────────────────────────────────────────────
 @bot.event
 async def on_ready():
