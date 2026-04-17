@@ -52,15 +52,18 @@ async def on_message(message: discord.Message):
             pass
 
         try:
-            await message.channel.send(
-                f"Oops {message.author.mention}! One or more words you've typed out are blacklisted from the server. Edit the word/s to \"bypass\" this filter.\n\n"
-                "**Examples:**\n"
-                "• cheat = chair\n"
-                "• spoof = woof\n"
-                "• spoofer = woofer\n"
-                "• hack = h4ck",
-                delete_after=10
+            embed = discord.Embed(
+                description=(
+                    f"Oops {message.author.mention}! One or more words you've typed out are blacklisted from the server. Edit the word/s to \"bypass\" this filter.\n\n"
+                    "**Examples:**\n"
+                    "- cheat = chair\n"
+                    "- spoof = woof\n"
+                    "- spoofer = woofer\n"
+                    "- hack = h4ck"
+                ),
+                color=0x9B59B6
             )
+            await message.channel.send(embed=embed, delete_after=10)
         except Exception:
             pass
 
