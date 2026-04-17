@@ -36,30 +36,44 @@ def normalize(text: str) -> str:
 
 @bot.event
 async def on_message(message: discord.Message):
+    print(f"[DEBUG] Message reçu de {message.author}: {message.content}")
+
     if message.author.bot:
+        print("[DEBUG] Auteur est un bot, ignoré")
         return
     if message.guild and message.author.guild_permissions.administrator:
+        print("[DEBUG] Auteur est admin, ignoré")
         await bot.process_commands(message)
         return
 
     normalized = normalize(message.content)
+    print(f"[DEBUG] Texte normalisé: {normalized}")
+
     found = next((w for w in BLACKLISTED_WORDS if w in normalized), None)
+    print(f"[DEBUG] Mot blacklisté trouvé: {found}")
 
     if found:
         try:
             await message.delete()
+            print("[DEBUG] Message supprimé")
         except discord.Forbidden:
-            pass
+            print("[DEBUG] ERREUR: Permission refusée pour supprimer le message")
+        except Exception as e:
+            print(f"[DEBUG] ERREUR suppression: {e}")
 
-        await message.channel.send(
-            f"Oops {message.author.mention}! One or more words you've typed out are blacklisted from the server. Edit the word/s to \"bypass\" this filter.\n\n"
-            "**Examples:**\n"
-            "• cheat = chair\n"
-            "• spoof = woof\n"
-            "• spoofer = woofer\n"
-            "• hack = h4ck",
-            delete_after=10
-        )
+        try:
+            await message.channel.send(
+                f"Oops {message.author.mention}! One or more words you've typed out are blacklisted from the server. Edit the word/s to \"bypass\" this filter.\n\n"
+                "**Examples:**\n"
+                "• cheat = chair\n"
+                "• spoof = woof\n"
+                "• spoofer = woofer\n"
+                "• hack = h4ck",
+                delete_after=10
+            )
+            print("[DEBUG] Message d'avertissement envoyé")
+        except Exception as e:
+            print(f"[DEBUG] ERREUR envoi message: {e}")
 
     await bot.process_commands(message)
 
