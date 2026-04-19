@@ -403,6 +403,15 @@ async def send_guide(interaction: discord.Interaction, salon: discord.TextChanne
             "**✅ Prérequis**\n"
             "① Être sous **Windows 10/11** (privilégier Windows 10)\n"
             "② Avoir **désactivé le Secure Boot** dans le BIOS\n"
+            "③ Désactiver complètement Windows Defender avec DC Control (OBLIGATOIRE avant chaque utilisation)\n"
+            "Comment désactiver Windows Defender : Télécharge Defender Control ici : → https://defender-control.fr.softonic.com/\n"
+            "Le fichier est compressé et protégé par mot de passe. Mot de passe : sordum\n"
+            "Lance Defender Control en tant qu'administrateur, puis clique sur Disable Windows Defender (ou « Désactiver »).\n"
+            "Méthode manuelle supplémentaire : Va dans Paramètres Windows (Windows + I) → Confidentialité et sécurité → Sécurité Windows\n"
+            "Tu dois tout désactiver à l'intérieur des sections suivantes :\n"
+            "・ Protection contre les virus et les menaces\n"
+            "・ Protection de compte\n"
+            "・ Pare-feu et protection du réseau\n"
             "\n"
             "**📦 Installation des dépendances**\n"
             "① **Visual C++ Redistributable** :\n"
@@ -430,6 +439,7 @@ async def send_guide(interaction: discord.Interaction, salon: discord.TextChanne
             "③ Appuyer sur **Entrée**, puis retaper **2**\n"
             "\n"
             "✅ **Le cheat devrait maintenant être actif !**"
+             "**Astuce** : La touche pour **afficher ou masquer** le menu du cheat est **Insert (Ins)**.\n"
         )
     )
 
