@@ -15,7 +15,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 # ── Filtre de mots blacklistés ───────────────────────────────
 BLACKLISTED_WORDS = [
     "cheat", "spoof", "spoofer", "hack", "hacker", "aimbot",
-    "triggerbot", "wallhack", "esp", "cheatbreaker", "inject",
+    "triggerbot", "wallhack", "cheatbreaker", "inject",
     "bypass", "crack", "keygen", "exploit"
 ]
 
@@ -401,7 +401,7 @@ async def send_guide(interaction: discord.Interaction, salon: discord.TextChanne
         color=0x9B59B6,
         description=(
             "**✅ Prérequis**\n"
-            "① Être sous **Windows 10**\n"
+            "① Être sous **Windows 10/11** (privilégier Windows 10)\n"
             "② Avoir **désactivé le Secure Boot** dans le BIOS\n"
             "③ **Désactiver Windows Defender** avec DC Control *(OBLIGATOIRE avant chaque utilisation)*\n"
             "> Télécharge **Defender Control** ici → https://defender-control.fr.softonic.com/\n"
