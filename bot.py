@@ -452,8 +452,8 @@ async def top_invites(interaction: discord.Interaction):
     guild = interaction.guild
     try:
         invites = await guild.invites.fetch()
-    except discord.Forbidden:
-        await interaction.followup.send("❌ Je n'ai pas la permission de voir les invitations (besoin de `Manage Guild`).", ephemeral=True)
+    except Exception as e:
+        await interaction.followup.send(f"❌ Erreur : `{e}`", ephemeral=True)
         return
 
     # Regroupe les invitations par inviteur
