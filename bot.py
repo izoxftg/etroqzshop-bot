@@ -383,7 +383,7 @@ async def send_cheat(interaction: discord.Interaction, salon: discord.TextChanne
         "✉️ Etroqz Cheat | Lifetime: **$99.99**"
     ), inline=False)
 
-    embed.add_field(name="🛒 Purchase", value="<#1480018356261355611>", inline=False)
+    embed.add_field(name="🛒 Purchase", value="[➜ Acheter maintenant](https://etroqz-shop.netlify.app/)", inline=False)
 
     embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
 
@@ -487,6 +487,31 @@ async def top_invites(interaction: discord.Interaction):
     embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
 
     await interaction.followup.send(embed=embed)
+
+
+
+# ── Slash command /purchase ──────────────────────────────────
+@bot.tree.command(name="purchase", description="Affiche le lien pour acheter sur le shop")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def send_purchase(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    embed = discord.Embed(
+        title="🛒 Etroqz Shop",
+        description=(
+            "Clique sur le lien ci-dessous pour découvrir nos produits et passer commande !\n\n"
+            "➜ **https://etroqz-shop.netlify.app/**"
+        ),
+        color=0x7c3aed
+    )
+    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
+
+    await target.send(embed=embed)
+    await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
 
 
 # ── Démarrage ────────────────────────────────────────────────
