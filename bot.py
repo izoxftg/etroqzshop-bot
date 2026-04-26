@@ -451,7 +451,7 @@ async def top_invites(interaction: discord.Interaction):
 
     guild = interaction.guild
     try:
-        invites = await guild.invites.fetch()
+        invites = await guild.invites()
     except Exception as e:
         await interaction.followup.send(f"❌ Erreur : `{e}`", ephemeral=True)
         return
