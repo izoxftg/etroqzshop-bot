@@ -9,13 +9,18 @@ TOKEN = os.environ.get("DISCORD_TOKEN")
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
+intents.invites = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
+
+# ── Cache des invitations ────────────────────────────────────
+invite_cache = {}  # guild_id -> {code -> uses}
+
 
 # ── Filtre de mots blacklistés ───────────────────────────────
 BLACKLISTED_WORDS = [
     "cheat", "spoof", "spoofer", "hack", "hacker", "aimbot",
-    "triggerbot", "wallhack", "cheatbreaker", "inject",
+    "triggerbot", "wallhack", "esp", "cheatbreaker", "inject",
     "bypass", "crack", "keygen", "exploit"
 ]
 
@@ -403,14 +408,6 @@ async def send_guide(interaction: discord.Interaction, salon: discord.TextChanne
             "**✅ Prérequis**\n"
             "① Être sous **Windows 10/11** (privilégier Windows 10)\n"
             "② Avoir **désactivé le Secure Boot** dans le BIOS\n"
-            "③ **Désactiver Windows Defender** avec DC Control *(OBLIGATOIRE avant chaque utilisation)*\n"
-            "> Télécharge **Defender Control** ici → https://defender-control.fr.softonic.com/\n"
-            "> Mot de passe du fichier compressé : **sordum**\n"
-            "> Lance-le en **administrateur** → clique sur **Disable Windows Defender**\n"
-            "> Méthode manuelle : `Windows + I` → Sécurité Windows → désactive :\n"
-            "> ・ Protection contre les virus et les menaces\n"
-            "> ・ Protection de compte\n"
-            "> ・ Pare-feu et protection du réseau\n"
             "\n"
             "**📦 Installation des dépendances**\n"
             "① **Visual C++ Redistributable** :\n"
@@ -437,9 +434,7 @@ async def send_guide(interaction: discord.Interaction, salon: discord.TextChanne
             "② Taper **2**, entrer votre clé si demandé\n"
             "③ Appuyer sur **Entrée**, puis retaper **2**\n"
             "\n"
-            "✅ **Le cheat devrait maintenant être actif !**\n"
-            "\n"
-            "💡 **Astuce** : La touche pour **afficher ou masquer** le menu du cheat est **Insert (Ins)**."
+            "✅ **Le cheat devrait maintenant être actif !**"
         )
     )
 
@@ -447,6 +442,51 @@ async def send_guide(interaction: discord.Interaction, salon: discord.TextChanne
 
     await target.send(embed=embed)
     await interaction.response.send_message(f"✅ Guide envoyé dans {target.mention} !", ephemeral=True)
+
+
+# ── Slash command /topinvites ────────────────────────────────
+@bot.tree.command(name="topinvites", description="Affiche le top des membres ayant invité le plus de monde")
+async def top_invites(interaction: discord.Interaction):
+    await interaction.response.defer()
+
+    guild = interaction.guild
+    try:
+        invites = await guild.invites.fetch()
+    except discord.Forbidden:
+        await interaction.followup.send("❌ Je n'ai pas la permission de voir les invitations (besoin de `Manage Guild`).", ephemeral=True)
+        return
+
+    # Regroupe les invitations par inviteur
+    invite_map = {}
+    for invite in invites:
+        if not invite.inviter:
+            continue
+        uid = invite.inviter.id
+        if uid not in invite_map:
+            invite_map[uid] = {"user": invite.inviter, "uses": 0}
+        invite_map[uid]["uses"] += invite.uses or 0
+
+    if not invite_map:
+        await interaction.followup.send("Aucune invitation trouvée sur ce serveur.")
+        return
+
+    sorted_invites = sorted(invite_map.values(), key=lambda x: x["uses"], reverse=True)[:10]
+
+    medals = ["🥇", "🥈", "🥉"]
+    lines = []
+    for i, entry in enumerate(sorted_invites):
+        rank = medals[i] if i < 3 else f"**#{i+1}**"
+        invites_word = "invitation" if entry["uses"] <= 1 else "invitations"
+        lines.append(f"{rank} <@{entry['user'].id}> — **{entry['uses']}** {invites_word}")
+
+    embed = discord.Embed(
+        title="🏆 Top des Invitations",
+        description="\n".join(lines),
+        color=0xFFD700
+    )
+    embed.set_footer(text="Etroqz Shop • discord.gg/pYZbAKqN")
+
+    await interaction.followup.send(embed=embed)
 
 
 # ── Démarrage ────────────────────────────────────────────────
